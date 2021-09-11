@@ -1,4 +1,4 @@
-# DjangoBlog
+# Alloygame
 
 🌍
 *[English](/docs/README-en.md) ∙ [简体中文](README.md)*
