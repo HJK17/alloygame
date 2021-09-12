@@ -11,7 +11,9 @@
     <!-- 引入bootstrap的css文件 -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <!--详情页面导入-->
-    <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+{#    <script src="{% static 'ckeditor/ckeditor/' %}"></script>#}
+    <script src="{% static "ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js" %}"></script>
+
     <link rel="stylesheet" href="{% static 'prism/prism.css' %}">
     <!--导入css-->
     <link rel="stylesheet" href="{% static 'common/common.css' %}">
@@ -30,6 +32,7 @@
         <!-- 导航栏商标 -->
         <div>
             <a class="navbar-brand" href="{% url 'goods:index' %}">首页</a>
+            <a class="navbar-brand" href="{% url 'goods:newstr' %}">资讯页</a>
             <a class="navbar-brand" href="{% url 'user:write' %}">发布文章</a>
         </div>
         <!-- 分类 -->
@@ -127,8 +130,8 @@
 </div>
 
 <!--ckeditor-->
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}" data-ckeditor-basepath="{% static 'ckeditor/ckeditor/' %}" id="ckeditor-init-script"></script>
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 <!-- 引入js -->
 <script type="text/javascript" src="{% static 'js/host.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/common.js' %}"></script>

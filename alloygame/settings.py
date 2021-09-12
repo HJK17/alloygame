@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce',
+    # 'tinymce',
     'haystack',
     'user',
     'goods',
@@ -81,11 +81,11 @@ DATABASES = {
     }
 }
 
-DEFAULT_CONFIG = {
-    'theme': 'advanced',
-    'width': 600,
-    'height': 400,
-}
+# DEFAULT_CONFIG = {
+#     'theme': 'advanced',
+#     'width': 600,
+#     'height': 400,
+# }
 
 CKEDITOR_CONFIGS = {
     # 配置名是default时，django-ckeditor默认使用这个配置
@@ -180,13 +180,6 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
-    "emailcode": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1/10",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
 }
 
 # 配置session存储方式
