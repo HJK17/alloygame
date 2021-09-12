@@ -19,8 +19,6 @@ from utils.image_code.code import verify_code
 from utils.mixin import LoginRequireMixin
 
 
-
-
 def register(request):
     """显示注册页面"""
     if request.method == "GET":
@@ -460,3 +458,11 @@ class WriteView(LoginRequiredMixin, View):
         # 返回响应，跳转到文章详情页面
         # 暂时先跳转到首页
         return redirect(reverse('goods:newstr'))
+
+
+class MynewstrView(LoginRequireMixin, View):
+    def get(self, request):
+        return render(request, 'mynewstr.html')
+
+    def post(self, request):
+        pass

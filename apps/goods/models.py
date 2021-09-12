@@ -203,8 +203,8 @@ class Article(models.Model):
     # 概要
     sumary = models.CharField(max_length=200, null=False, blank=False)
     # 文章正文。
-    content = models.TextField()
-    new = RichTextUploadingField(config_name='my_config', blank=True, verbose_name='商品新闻')
+    # content = models.TextField()
+    content = RichTextUploadingField(config_name='my_config')
     # 浏览量
     total_views = models.PositiveIntegerField(default=0)
     # 文章点赞数

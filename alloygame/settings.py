@@ -87,15 +87,28 @@ DEFAULT_CONFIG = {
     'height': 400,
 }
 
-# ckeditor 富文本编译器
 CKEDITOR_CONFIGS = {
-    # 将这份配置命名为 my_config
-    'my_config':  {
-        'toolbar': 'full',  # 工具条功能
-        'height': 300,  # 编辑器高度
-        'width': 800,  # 编辑器宽
-    },
+    # 配置名是default时，django-ckeditor默认使用这个配置
+    'my_config': {
+        # 编辑器的宽高请根据你的页面自行设置
+        'width': '800px',
+        'height': '500px',
+        'image_previewText': ' ',
+        'tabSpaces': 4,
+        'toolbar': 'Custom',
+        # 添加按钮在这里
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Format', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Blockquote', 'CodeSnippet'],
+            ['Image', 'Link', 'Unlink'],
+            ['Maximize']
+        ],
+        # 插件
+        'extraPlugins': ','.join(['codesnippet', 'uploadimage', 'widget', 'lineutils', ]),
+    }
 }
+
 CKEDITOR_UPLOAD_PATH = ''
 AUTH_USER_MODEL = 'user.User'
 

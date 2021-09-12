@@ -1,7 +1,7 @@
 from django.urls import path, include, re_path
 from apps.user import views
 from apps.user.views import RegisterView, ActiveView, LoginView, LogoutView, UserInfoView, UserOrderView, \
-    UserAddressView, ChangePassword, SendCode, ImageCode, WriteView
+    UserAddressView, ChangePassword, SendCode, ImageCode, WriteView, MynewstrView
 
 app_name = 'user'
 
@@ -20,6 +20,7 @@ urlpatterns = [
     path('address', UserAddressView.as_view(), name='address'),  # 用户中心--地址页
 
     path('write/', WriteView.as_view(), name='write'),
+    path('mynewstr/', MynewstrView.as_view(), name='mynewsrt')
 
 
 
