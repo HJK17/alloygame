@@ -19,8 +19,8 @@ urlpatterns = [
     re_path(r"^order/(?P<page>\d+)/$", UserOrderView.as_view(), name='order'),
     path('address', UserAddressView.as_view(), name='address'),  # 用户中心--地址页
 
-    path('write/', WriteView.as_view(), name='write'),
-    path('mynewstr/', MynewstrView.as_view(), name='mynewsrt')
+    path('write/', WriteView.as_view(), name='write'),  # 写文章
+    path('mynewstr/', MynewstrView.as_view(), name='mynewstr')  # 我的文章
 
 
 

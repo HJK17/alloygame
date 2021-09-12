@@ -12,7 +12,7 @@
             <li><a href="{% url 'user:address' %}" {% if page == 'address' %}class="active"{% endif %}>· 收货地址</a></li>
             <li><a href="{% url 'user:ChangePassword' %}" {% if page == 'ChangePassword' %}{% endif %}>· 修改密码</a></li>
             <li><a href="{% url 'user:write' %}" {% if page == 'write' %}{% endif %}>· 发布文章</a></li>
-            <li><a href="#" {% if page == '#' %}class="active"{% endif %}>· 我的文章</a></li>
+            <li><a href="{% url 'user:mynewstr' %}" {% if page == 'mynewstr' %}class="active"{% endif %}>· 我的文章</a></li>
 
         </ul>
     </div>

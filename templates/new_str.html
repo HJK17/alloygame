@@ -5,7 +5,7 @@
     <!-- 网站采用的字符编码 -->
     <meta charset="utf-8">
     <!-- 网站标题 -->
-    <title>首页</title>
+    <title>资讯页</title>
     {% load static %}
     <!-- 引入bootstrap的css文件 -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -31,6 +31,7 @@
             <!-- 导航栏商标 -->
             <div>
                 <a class="navbar-brand" href="{% url 'goods:index' %}">首页</a>
+                <a class="navbar-brand" href="{% url 'user:mynewstr' %}">我的文章</a>
                 <a class="navbar-brand" href="{% url 'user:write' %}">发布文章</a>
             </div>
             <!-- 分类 -->
@@ -52,7 +53,6 @@
                 </div>
             </div>
         </div>
-        <!--登录/个人中心-->
     </nav>
 
     <!-- content -->

@@ -3,7 +3,7 @@ import random
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout  # 要加上这句话不然会报错（1）
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -460,9 +460,51 @@ class WriteView(LoginRequiredMixin, View):
         return redirect(reverse('goods:newstr'))
 
 
+from django.http import HttpResponseNotFound
+
+
 class MynewstrView(LoginRequireMixin, View):
     def get(self, request):
-        return render(request, 'mynewstr.html')
+        cat_id = request.GET.get('cat_id', 1)
+        page_num = request.GET.get('page_num', 1)
+        page_size = request.GET.get('page_size', 10)
+        # 判断分类id
+        try:
+            category = ArticleCategory.objects.get(id=cat_id)
+        except ArticleCategory.DoesNotExist:
+            return HttpResponseNotFound('没有此分类')
+
+
+        # 获取博客分类信息
+        categories = ArticleCategory.objects.all()
+
+        # 分页数据
+        articles = Article.objects.filter(
+            category=category
+        )
+
+
+        # 创建分页器：每页N条记录
+        paginator = Paginator(articles, page_size)
+        # 获取每页商品数据
+        try:
+            page_articles = paginator.page(page_num)
+        except EmptyPage:
+            # 如果没有分页数据，默认给用户404
+            return HttpResponseNotFound('empty page')
+        # 获取列表页总页数
+        total_page = paginator.num_pages
+
+        context = {
+            'categories': categories,
+            'category': category,
+            'articles': page_articles,
+            'page_size': page_size,
+            'total_page': total_page,
+            'page_num': page_num,
+        }
+        return render(request, 'mynewstr.html', context)
 
     def post(self, request):
+        """删除文章功能"""
         pass

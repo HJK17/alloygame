@@ -266,7 +266,7 @@ class NewDetailView(View):
         try:
             article = Article.objects.get(id=id)
         except Article.DoesNotExist:
-            return render(request, '404.html')
+            return render(request, '')
         else:
             article.total_views += 1
             article.save()
