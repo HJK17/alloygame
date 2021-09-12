@@ -41,11 +41,11 @@
                         {% for cat in categories %}
                             {% if cat.id == category.id %}
                                 <li class="nav-item active">
-                                    <a class="nav-link mr-2" href="/newstr/?cat_id={{ cat.id }}">{{ cat.title }}</a>
+{#                                    <a class="nav-link mr-2" href="/newstr/?cat_id={{ cat.id }}">{{ cat.title }}</a>#}
                                 </li>
                             {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link mr-2" href="/newstr/?cat_id={{ cat.id }}">{{ cat.title }}</a>
+{#                                    <a class="nav-link mr-2" href="/newstr/?cat_id={{ cat.id }}">{{ cat.title }}</a>#}
                                 </li>
                             {% endif %}
                         {% endfor %}
@@ -60,8 +60,8 @@
     <div class="container">
         <!-- 列表循环 -->
             {% for article in articles %}
-                <span>article.author_id:{{ article.author_id }}</span>
-                {% if article.author_id == 1 %}
+{#                <span>article.author_id:{{ article.author_id }}</span>#}
+                {% if article.author_id == user.id %}
                     <div class="row mt-2">
                         <!-- 文章内容 -->
                         <!-- 标题图 -->
