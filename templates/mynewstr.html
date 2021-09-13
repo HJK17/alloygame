@@ -61,7 +61,6 @@
         <!-- 列表循环 -->
             {% for article in articles %}
                 {% if article.author_id == user.id %}  <!-- 只能看自己的文章 -->
-                    {{ article.id }}
                     <div class="row mt-2">
                         <!-- 文章内容 -->
                         <!-- 标题图 -->
