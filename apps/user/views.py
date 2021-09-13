@@ -465,6 +465,7 @@ from django.http import HttpResponseNotFound
 
 class MynewstrView(LoginRequireMixin, View):
     def get(self, request):
+        id = request.GET.get('id')
         cat_id = request.GET.get('cat_id', 1)
         page_num = request.GET.get('page_num', 1)
         page_size = request.GET.get('page_size', 10)
@@ -474,15 +475,18 @@ class MynewstrView(LoginRequireMixin, View):
         except ArticleCategory.DoesNotExist:
             return HttpResponseNotFound('没有此分类')
 
-
         # 获取博客分类信息
         categories = ArticleCategory.objects.all()
+
+        article = Article.objects.filter(
+            id=id
+        )
+        article.delete()
 
         # 分页数据
         articles = Article.objects.filter(
             category=category
         )
-
 
         # 创建分页器：每页N条记录
         paginator = Paginator(articles, page_size)
@@ -505,6 +509,9 @@ class MynewstrView(LoginRequireMixin, View):
         }
         return render(request, 'mynewstr.html', context)
 
-    def post(self, request):
-        """删除文章功能"""
-        pass
+    # def post(self, request):
+    #     """删除文章功能"""
+    #
+    #     print('id--->', id)
+    #
+    #     return render(request, 'mynewstr.html')

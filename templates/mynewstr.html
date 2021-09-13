@@ -61,6 +61,7 @@
         <!-- 列表循环 -->
             {% for article in articles %}
                 {% if article.author_id == user.id %}  <!-- 只能看自己的文章 -->
+                    {{ article.id }}
                     <div class="row mt-2">
                         <!-- 文章内容 -->
                         <!-- 标题图 -->
@@ -92,15 +93,14 @@
                                 <span><i class="fas fa-eye" style="color: lightskyblue;"></i>{{ article.total_views }}&nbsp;&nbsp;&nbsp;</span>
                                 <span><i class="fas fa-comments" style="color: yellowgreen;"></i>{{ article.comments_count }}&nbsp;&nbsp;&nbsp;</span>
                                 <span><i class="fas fa-clock" style="color: pink;"></i>{{ article.created | date }}</span>
+{#                                    <input type="hidden" name="id" value="{{ article.id }}">#}
+                               <a href="{% url 'user:mynewstr' %}?id={{ article.id }}"><button class="btn btn-danger btn-sm" style="margin-left: 600px">删除</button></a>
                             </p>
                         </div>
                         <hr style="width: 100%;"/>
                     </div>
-                {% else %}
-{#                    <span>你还没有发布过文章哦</span>#}
                 {% endif %}
            {% endfor %}
-{#        <span>你还没有发布过文章</span>#}
 
         <!-- 页码导航 -->
         <div class="pagenation" style="text-align: center">

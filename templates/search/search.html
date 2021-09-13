@@ -1,5 +1,5 @@
 {% extends 'base_detail_list.html' %}
-{% block title %}天天生鲜-商品搜索结果列表{% endblock title %}
+{% block title %}搜索结果列表{% endblock title %}
 {% block main_content %}
 	<div class="breadcrumb">
 		<a href="#">{{ query }}</a>
@@ -13,11 +13,8 @@
             <li>
                 <a href="{% url 'goods:detail' item.object.id %}"><img src="{{ item.object.image.url }}"></a>
                 <h4><a href="{% url 'goods:detail' item.object.id %}">{{ item.object.name }}</a></h4>
-                <div class="operate">
-                    <span class="prize">￥{{ item.object.price }}</span>
-                    <span class="unit">{{ item.object.price}}/{{ item.object.unite }}</span>
-                    <a href="#" class="add_goods" title="加入购物车"></a>
-                </div>
+{#                <a href="{% url 'goods:newstr' item.object.id %}"><img src="{{ item.object.avatar.url }}"></a>#}
+{#                <h4><a href="{% url 'goods:newstr' item.object.id %}">{{ item.object.title }}</a></h4>#}
             </li>
             {% endfor %}
         </ul>
@@ -35,6 +32,6 @@
                 {% if spage.has_next %}
 				<a href="/search?q={{ query }}&page={{ page.next_page_number }}">下一页></a>
                 {% endif %}
-			</div>
+        </div>
 	</div>
 {% endblock main_content %}
