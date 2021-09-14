@@ -1,0 +1,6 @@
+# 指定根据表中的哪些字段建立索引数据
+{{ object.sumary }}  # 概要
+{{ object.author }}  # 作者
+{{ object.tags }}  # 标签
+{{ object.title }}  # 标题
+
