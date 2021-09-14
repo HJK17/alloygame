@@ -75,7 +75,7 @@
                             <!-- 标签 -->
                             <span>
                                 <a class="badge badge-secondary">{{ article.tags }}</a>
-                        </span>
+                            </span>
                             <!-- 标题 -->
                             <h4>
                                 <b><a href="{% url 'goods:newdetail' %}?id={{ article.id }}" style="color: black;">{{ article.title }}</a></b>
@@ -88,18 +88,20 @@
                             </div>
                             <!-- 注脚 -->
                             <p>
-                                <!-- 查看、评论、时间 -->
+                                <!-- 查看、评论、时间、删除 -->
                                 <span><i class="fas fa-eye" style="color: lightskyblue;"></i>{{ article.total_views }}&nbsp;&nbsp;&nbsp;</span>
                                 <span><i class="fas fa-comments" style="color: yellowgreen;"></i>{{ article.comments_count }}&nbsp;&nbsp;&nbsp;</span>
                                 <span><i class="fas fa-clock" style="color: pink;"></i>{{ article.created | date }}</span>
-{#                                    <input type="hidden" name="id" value="{{ article.id }}">#}
                                <a href="{% url 'user:mynewstr' %}?id={{ article.id }}"><button class="btn btn-danger btn-sm" style="margin-left: 600px">删除</button></a>
                             </p>
                         </div>
                         <hr style="width: 100%;"/>
                     </div>
                 {% endif %}
-           {% endfor %}
+
+                {% empty %}
+                    <h3>没有发布此类过文章</h3>
+            {% endfor %}
 
         <!-- 页码导航 -->
         <div class="pagenation" style="text-align: center">
@@ -120,8 +122,7 @@
             {
                 total_page
             }
-        }
-    ,
+        },
         callback:function (current) {
 
             location.href = '/?cat_id={{ category.id }}&page_size={{ page_size }}&page_num=' + current;

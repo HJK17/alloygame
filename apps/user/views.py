@@ -478,10 +478,11 @@ class MynewstrView(LoginRequireMixin, View):
         # 获取博客分类信息
         categories = ArticleCategory.objects.all()
 
-        article = Article.objects.filter(
+        # 删除功能
+        article_rm = Article.objects.filter(
             id=id
         )
-        article.delete()
+        article_rm.delete()
 
         # 分页数据
         articles = Article.objects.filter(
@@ -506,12 +507,6 @@ class MynewstrView(LoginRequireMixin, View):
             'page_size': page_size,
             'total_page': total_page,
             'page_num': page_num,
+
         }
         return render(request, 'mynewstr.html', context)
-
-    # def post(self, request):
-    #     """删除文章功能"""
-    #
-    #     print('id--->', id)
-    #
-    #     return render(request, 'mynewstr.html')

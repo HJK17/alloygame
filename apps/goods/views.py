@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django_redis import get_redis_connection
@@ -316,6 +316,8 @@ class NewDetailView(View):
             id = request.POST.get('id')
             content = request.POST.get('content')
 
+            if not all([content]):
+                return HttpResponseBadRequest('回复内容不能为空')
             # 判断商品id
             try:
                 article = Article.objects.get(id=id)

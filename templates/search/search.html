@@ -1,37 +1,98 @@
 {% extends 'base_detail_list.html' %}
+{#首先在顶部加载highlight#}
+{% load highlight %}
+{% load static %}
 {% block title %}搜索结果列表{% endblock title %}
-{% block main_content %}
-	<div class="breadcrumb">
-		<a href="#">{{ query }}</a>
-		<span>></span>
-		<a href="#">搜索结果如下:</a>
+{% block topfiles %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+{% endblock topfiles %}
+{% block search_bar %}
+	<div class="search_bar clearfix">
+		<a href="{% url 'goods:index' %}" class="logo fl"><img src="{% static 'images/logo.png' %}"></a>
+		<div class="search_con fl">
+            <form action="/search/" method="get">
+                <input type="text" class="input_text fl" name="q" placeholder="搜索资讯或商品">
+			<input type="submit" class="input_btn fr" name="" value="搜索">
+            </form>
+		</div>
 	</div>
+{% endblock search_bar %}
+{% block body %}
+    {% block main_content %}
+        <div class="breadcrumb">
+            <span style="color: #0f163c; line-height: 20px;">搜索结果如下:</span>
+        </div>
 
 	<div class="main_wrap clearfix">
         <ul class="goods_type_list clearfix">
             {% for item in page %}
-            <li>
-                <a href="{% url 'goods:detail' item.object.id %}"><img src="{{ item.object.image.url }}"></a>
-                <h4><a href="{% url 'goods:detail' item.object.id %}">{{ item.object.name }}</a></h4>
-{#                <a href="{% url 'goods:newstr' item.object.id %}"><img src="{{ item.object.avatar.url }}"></a>#}
-{#                <h4><a href="{% url 'goods:newstr' item.object.id %}">{{ item.object.title }}</a></h4>#}
-            </li>
+                {% if item.object.name %}
+                    <li>
+                        <a href="{% url 'goods:detail' item.object.id %}"><img src="{{ item.object.image.url }}"></a>
+                        <h4><a href="{% url 'goods:detail' item.object.id %}">{{ item.object.name }}</a></h4>
+                    </li>
+                {% else %}
+                    <h3>没有找到相关文章</h3>
+                    <a href="{% url 'goods:newstr' %}" >前往咨询页搜搜看？</a>
+                {% endif %}
+                {% empty %}
+                    <h3>没有找到相关文章</h3>
+                    <a href="{% url 'goods:newstr' %}" >前往咨询页搜搜看？</a>
             {% endfor %}
         </ul>
-        <div class="pagenation">
-                {% if page.has_previous %}
-				<a href="/search?q={{ query }}&page={{ page.previous_page_number }}">上一页</a>
-                {% endif %}
-                {% for pindex in paginator.page_range %}
-                    {% if pindex == page.number %}
-				        <a href="/search?q={{ query }}&page={{ pindex }}" class="active">{{ pindex }}</a>
-                    {% else %}
-				        <a href="/search?q={{ query }}&page={{ pindex }}">{{ pindex }}</a>
-                    {% endif %}
-				{% endfor %}
-                {% if spage.has_next %}
-				<a href="/search?q={{ query }}&page={{ page.next_page_number }}">下一页></a>
-                {% endif %}
+    </div>
+
+{#    <div class="container">#}
+{#        {% for article in page %}#}
+{#            <div class="row mt-2">#}
+{#            <div class="col-3">#}
+{#                <a href="{% url 'goods:newdetail' %}?id={{ article.object.id }}">#}
+{#                    <img src="{{ article.object.avatar.url }}" alt="avatar" style="max-width:100%; border-radius: 20px">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <div class="col">#}
+{#                <!-- 标题 -->#}
+{#                <h4>#}
+{#                    <b><a href="{% url 'goods:newdetail' %}?id={{ article.object.id }}" style="color: black;">{% highlight article.object.title with query %}</a></b>#}
+{#                </h4>#}
+{#                 <!-- 作者 -->#}
+{#                <span >作者：{% highlight article.object.author with query %}</span>#}
+{##}
+{#                <!-- 摘要 -->#}
+{#                <div>#}
+{#                    <p style="color: gray;" >#}
+{#                        概要：{% highlight article.object.sumary with query%}#}
+{#                    </p>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#        {% empty %}#}
+{#            <h3>没有找到相关文章</h3>#}
+{#        {% endfor %}#}
+{#            </div>#}
+{#        <div class="pagenation">#}
+{#            {% if page.has_previous %}#}
+{#                <a href="/search?q={{ query }}&page={{ page.previous_page_number }}">上一页</a>#}
+{#            {% endif %}#}
+{#            {% for pindex in paginator.page_range %}#}
+{#                {% if pindex == page.number %}#}
+{#                    <a href="/search?q={{ query }}&page={{ pindex }}" class="active">{{ pindex }}</a>#}
+{#                {% else %}#}
+{#                    <a href="/search?q={{ query }}&page={{ pindex }}">{{ pindex }}</a>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#            {% if spage.has_next %}#}
+{#                <a href="/search?q={{ query }}&page={{ page.next_page_number }}">下一页></a>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        </div>#}
         </div>
-	</div>
-{% endblock main_content %}
+        <style>
+            span.highlighted {
+                color: red;
+            }
+        </style>
+    {% endblock main_content %}
+{% endblock body %}
