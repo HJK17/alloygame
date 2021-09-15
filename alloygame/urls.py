@@ -11,4 +11,6 @@ urlpatterns = [
     # re_path(r"^tinymce/", include("tinymce.urls")),  # 富文本编辑器
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
     path('search/', include('haystack.urls')),  # 全文检索框架
+    path('searchnewstr/', include('haystack.urls')),  # 全文检索框架
+
 ]
