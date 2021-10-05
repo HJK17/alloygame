@@ -1,7 +1,5 @@
 # Alloygame
 
-🌍
-*[English](/docs/README-en.md) ∙ [简体中文](README.md)*
 
 基于`python3.8`和`Django3.2`的游戏资讯平台。
 
