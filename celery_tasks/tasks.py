@@ -37,7 +37,7 @@ def send_register_active_email(to_email, username, token):
 def send_verify_code(to_email, username, token):
     """发送验证码邮件"""
     # 组织邮件信息
-    subject = '天天生鲜验证信息'
+    subject = '合金游戏验证信息'
     message = ""
     sender = settings.EMAIL_FROM
     receiver = [to_email]
